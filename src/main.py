@@ -1,4 +1,4 @@
-from modules.faceMeshModule import detector
+from src.modules.faceMeshModule import detector
 import cv2
 import pandas as pd
 import time
