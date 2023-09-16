@@ -1,5 +1,4 @@
 from src.modules.faceMeshModule import detector
-from src.main import main
 import cv2
 import os
 import sys
@@ -14,6 +13,7 @@ def test_face_detection():
     img , faces = detector.findFaceMesh(img=img)
     assert len(faces) > 0
 
-""" This test should be run locally only as it will open a window to display the video"""
+""" This test should be run locally only as it will open a 
+    window to display the video"""
 # def test_main():
 #     assert main(os.path.join(sys.path[0],'src/test_clips/JP_500x500.mp4')) is not None
