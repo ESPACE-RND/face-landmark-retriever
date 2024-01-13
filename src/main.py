@@ -1,4 +1,5 @@
-from src.modules.faceMeshModule import detector
+from modules.faceMeshModule import detector
+from modules.datasetCreationModule import  split_video_and_extract_audio
 import cv2
 import pandas as pd
 import time
@@ -52,8 +53,26 @@ def main(path:str):
 
 if __name__ == "__main__":
 
-    # get dataframe from main method
-    df = main( os.path.join(sys.path[0],''))
+    # Specify the input folder containing videos
+    input_folder = "C:/Users/Admin/PycharmProjects/faceDet/src/Training/clips"
 
-    # save dataframe to excel
-    df.to_excel('pandas_to_excel.xlsx', sheet_name='Landmarks')
+    # Specify the output folder for saving video segments
+    video_output_folder = "C:/Users/Admin/PycharmProjects/faceDet/src/Training/extracted_clips"
+
+    # Specify the output folder for saving audio segments
+    audio_output_folder = "C:/Users/Admin/PycharmProjects/faceDet/src/Training/extracted_audio"
+
+    # # Iterate through each video file in the input folder
+    # for filename in os.listdir(input_folder):
+    #     if filename.endswith(".mp4"):
+    #         video_path = os.path.join(input_folder, filename)
+    #         split_video_and_extract_audio(video_path, video_output_folder, audio_output_folder)
+
+    # Iterate through each video file in the input folder
+    for filename in os.listdir(video_output_folder):
+        if filename.endswith(".mp4"):
+            # get dataframe from main method
+            df = main(os.path.join(video_output_folder, filename))
+
+            # save dataframe to excel
+            df.to_excel(f"C:/Users/Admin/PycharmProjects/faceDet/src/Training/excel_files/{filename}_pandas_to_excel.xlsx", sheet_name='Landmarks')
